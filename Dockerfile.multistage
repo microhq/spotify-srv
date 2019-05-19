@@ -1,0 +1,17 @@
+# build stage
+FROM golang:1.11 AS build-env
+
+ENV GO111MODULE on
+WORKDIR /go/src/spotify-srv
+COPY . .
+
+RUN go get -d -v ./...
+RUN go build -v -o srv main.go
+
+# runtime stage
+FROM alpine
+WORKDIR /srv
+COPY --from=build-env /go/src/spotify-srv/srv /srv/
+
+EXPOSE 53000
+ENTRYPOINT [ "/srv" ]

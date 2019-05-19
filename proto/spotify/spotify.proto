@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package go.micro.srv.spotify;
+
+service Spotify {
+	rpc Play(PlayRequest) returns (PlayResponse) {}
+	rpc Stop(StopRequest) returns (StopResponse) {}
+}
+
+message PlayRequest {
+	string name = 1;
+}
+
+message PlayResponse {}
+
+message StopRequest {}
+
+message StopResponse {}
