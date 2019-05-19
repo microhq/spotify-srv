@@ -12,7 +12,7 @@ import (
 	pb "github.com/microhq/spotify-srv/proto/spotify"
 )
 
-const (
+var (
 	redirectURI = "http://localhost:8080/callback"
 )
 
@@ -40,6 +40,11 @@ func main() {
 	spotifyDeviceID := os.Getenv("SPOTIFY_DEVICE_ID")
 	if spotifySecret == "" {
 		log.Fatal("Could not read SPOTIFY_DEVICE_ID environment variable")
+	}
+
+	_redirectURI := os.Getenv("REDIRECT_URI")
+	if _redirectURI != "" {
+		redirectURI = _redirectURI
 	}
 
 	client, err := spotify.NewClient(spotifyID, spotifySecret, redirectURI, spotifyDeviceID)

@@ -63,7 +63,7 @@ go run github.com/microhq/spotify-srv
 
 Finally run it inside Docker container:
 ```
-docker run -P -e GO111MODULE=on -e SPOTIFY_ID="XXX" -e SPOTIFY_SECRET="XXX" -e SPOTIFY_DEVICE_ID="XXX" microhq/spotify-srv
+docker run -P -e SPOTIFY_ID="XXX" -e SPOTIFY_SECRET="XXX" -e SPOTIFY_DEVICE_ID="XXX" -e REDIRECT_URI="XXX" microhq/spotify-srv
 ```
 
 **NOTE:** when running inside Docker container the service runs in the container network namespace and that includes DNS! You will only be able to trigger the playback if you call the service from inside that network namespace.
